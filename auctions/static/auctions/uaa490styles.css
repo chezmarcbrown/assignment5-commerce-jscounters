@@ -1,0 +1,25 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 18px;
+}
+
+body > header { 
+  padding: 0 0.5rem .75rem 0.5rem;
+}
+
+body {
+  grid-template-columns: 10% 80% 10%;
+}
+
+.form-control {
+  width: 50%;
+}
+
+.watcher-badge {
+  font-size: small;
+  background-color: blue;
+  color:white;
+  padding: 3px;
+  border-radius: 6px;
+}
