@@ -66,21 +66,20 @@ def register(request):
 from django.views.generic.edit import FormView
 from .forms import HackForm
 from .models import Hack
+
 class HackFormView(FormView):
     template_name = 'auctions/hacks.html'
     form_class = HackForm
     success_url = '/'
 
     def form_valid(self, form):
-        print(self)
-        print(self.request)
-        print(self.request.user)
         if self.request.user.is_authenticated:
             h,_ = Hack.objects.get_or_create(user=self.request.user)
             h.listing_count = max(0, h.listing_count+form.cleaned_data["listings"])
-            h.watchlist_count = max(0, h.watchlist_count+int(form.cleaned_data["watchlist"]))
+            h.watchlist_count = max(0, h.watchlist_count+form.cleaned_data["watchlist"])
             h.save()
         return super().form_valid(form)
+
 
 from django.http import JsonResponse
 def api_get_counters(request):
